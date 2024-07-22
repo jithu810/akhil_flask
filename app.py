@@ -8,10 +8,28 @@ from surprise import Dataset, Reader, SVD
 from surprise.model_selection import train_test_split
 from surprise import accuracy
 import nltk
-nltk.download('stopwords')
+
 from nltk.corpus import stopwords
 from bs4 import BeautifulSoup
 import re
+import os
+
+nltk_data_path = os.getenv('NLTK_DATA', '/opt/render/project/src/nltk_data')
+if not os.path.exists(nltk_data_path):
+    os.makedirs(nltk_data_path)
+nltk.data.path.append(nltk_data_path)
+
+# Ensure the stopwords are downloaded
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords', download_dir=nltk_data_path)
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords', download_dir=nltk_data_path)
+
 
 # Set of stopwords
 stop_words = set(stopwords.words('english'))
