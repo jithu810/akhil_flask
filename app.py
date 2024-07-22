@@ -8,7 +8,7 @@ from surprise import Dataset, Reader, SVD
 from surprise.model_selection import train_test_split
 from surprise import accuracy
 import nltk
-# nltk.download('stopwords')
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from bs4 import BeautifulSoup
 import re
